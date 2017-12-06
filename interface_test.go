@@ -11,6 +11,9 @@ func TestInterfaceIPV4Addrs(t *testing.T) {
 	}
 
 	for _, ip := range ips {
+		if len(ip) != 4 {
+			t.Errorf("Expect IPv4, IP: %s", ip.String())
+		}
 		t.Log(ip.String())
 	}
 }
