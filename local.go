@@ -38,18 +38,8 @@ var privateRanges = []ipRange{
 }
 
 func inRange(r ipRange, ipAddress net.IP) bool {
-	start := r.start.To4()
-	if start == nil {
-		return false
-	}
-
-	end := r.end.To4()
-	if end == nil {
-		return false
-	}
-
 	// strcmp type byte comparison
-	if bytes.Compare(ipAddress, start) >= 0 && bytes.Compare(ipAddress, end) < 0 {
+	if bytes.Compare(ipAddress, r.start.To4()) >= 0 && bytes.Compare(ipAddress, r.end.To4()) < 0 {
 		return true
 	}
 	return false
